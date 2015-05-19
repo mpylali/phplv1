@@ -6,19 +6,24 @@ class PagesController extends AppController
      public function index()
      {
          $params = array(
-             'mensaje' => 'Bienvenido al curso de PHP',
-             'fecha' => date('d-m-yyy'),
+             'titulo' => 'Página de inicio'
          );
-         require __DIR__ . '\..\View\Pages\prueba.php';
+         require __DIR__ . '\..\View\Pages\index.php';
      }
      
-     public function prueba()
+     public function bienvenida() {
+         $params = array(
+             'titulo' => 'Página de bienvenida'
+         );
+         require __DIR__ . '\..\View\Pages\bienvenida.php';
+     }
+     
+     public function acerca()
      {
          $params = array(
-             'mensaje' => 'Adios al curso de PHP',
-             'fecha' => date('d-m-yyy'),
+             'titulo' => 'Acerca de',
          );
-         require __DIR__ . '\..\View\Pages\prueba.php';
+         require __DIR__ . '\..\View\Pages\acerca.php';
      }
      
 

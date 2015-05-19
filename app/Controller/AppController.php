@@ -1,29 +1,38 @@
 <?php
 class AppController
  {
+    public $layout = 'layout';
+    
     public $Menu = array(
-        array('icono'=>'fa fa-align-justify','texto'=>'Introducción',
+        array('icono'=>'fa fa-dashboard','tema'=>'Páginas',
             'contenido'=>array(
-                array('icono'=>'','texto'=>'¿Qué es PHP?','url'=>'#'),
-                array('icono'=>'','texto'=>'Herramientas de desarrollo','url'=>'#'),
-                array('icono'=>'','texto'=>'Instalación','url'=>'#'),
-                array('icono'=>'','texto'=>'Primera página con PHP','url'=>'#'),
+                array('icono'=>'','subtema'=>'Página de bienvenida','url'=>'pages/bienvenida'),
+                array('icono'=>'','subtema'=>'Acerca de','url'=>'pages/acerca')
             )),
-        array('icono'=>'fa fa-pencil','texto'=>'Sintaxis básica',
+        array('icono'=>'fa fa-align-justify','tema'=>'Introducción',
             'contenido'=>array(
-                array('icono'=>'','texto'=>'Etiquetas','url'=>'#'),
-                array('icono'=>'','texto'=>'Incrustación de código PHP','url'=>'#'),
-                array('icono'=>'','texto'=>'Comentarios','url'=>'#'),
+                array('icono'=>'','subtema'=>'¿Qué es PHP?','url'=>'#'),
+                array('icono'=>'','subtema'=>'Herramientas de desarrollo','url'=>'#'),
+                array('icono'=>'','subtema'=>'Instalación','url'=>'#'),
+                array('icono'=>'','subtema'=>'Primera página con PHP','url'=>'#'),
             )),
-        array('icono'=>'fa fa-book','texto'=>'Tipos de datos','contenido'=>array()),
-        array('icono'=>'fa fa-refresh','texto'=>'Variables','contenido'=>array()),
-        array('icono'=>'fa fa-arrow-right','texto'=>'Constantes','contenido'=>array()),
-        array('icono'=>'fa fa-plus','texto'=>'Operadores','contenido'=>array()),
-        array('icono'=>'fa fa-hand-o-right','texto'=>'Estructuras de control','contenido'=>array()),
-        array('icono'=>'fa fa-edit','texto'=>'Funciones','contenido'=>array()),
-        array('icono'=>'fa fa-futbol-o','texto'=>'Clases y Objetos','contenido'=>array()),
-        array('icono'=>'fa fa-file-excel-o','texto'=>'Manejo de Archivos','contenido'=>array()),
+        array('icono'=>'fa fa-pencil','tema'=>'Sintaxis básica',
+            'contenido'=>array(
+                array('icono'=>'','subtema'=>'Etiquetas','url'=>'#'),
+                array('icono'=>'','subtema'=>'Incrustación de código PHP','url'=>'#'),
+                array('icono'=>'','subtema'=>'Comentarios','url'=>'#'),
+            )),
+        array('icono'=>'fa fa-book','tema'=>'Tipos de datos','contenido'=>array()),
+        array('icono'=>'fa fa-refresh','tema'=>'Variables','contenido'=>array()),
+        array('icono'=>'fa fa-arrow-right','tema'=>'Constantes','contenido'=>array()),
+        array('icono'=>'fa fa-plus','tema'=>'Operadores','contenido'=>array()),
+        array('icono'=>'fa fa-hand-o-right','tema'=>'Estructuras de control','contenido'=>array()),
+        array('icono'=>'fa fa-edit','tema'=>'Funciones','contenido'=>array()),
+        array('icono'=>'fa fa-futbol-o','tema'=>'Clases y Objetos','contenido'=>array()),
+        array('icono'=>'fa fa-file-excel-o','tema'=>'Manejo de Archivos','contenido'=>array()),
         );
+    
+    
     
     
      
