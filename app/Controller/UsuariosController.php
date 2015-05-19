@@ -7,6 +7,12 @@ class UsuariosController extends AppController{
          $params = array(
              'titulo' => 'Usuarios'
          );
+         
+         $m = new UsuariosModel(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
+                     Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
+
+         $params['usuarios'] = $m->buscarTodos();
+         
          require __DIR__ . '\..\View\Usuarios\index.php';
      }
     

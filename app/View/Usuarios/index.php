@@ -1,4 +1,4 @@
- <?php ob_start() ?>
+ <?php ob_start();?>
 
 <!-- Default box -->
 <div class="box">
@@ -10,7 +10,25 @@
     </div>
   </div>
   <div class="box-body">
-      <?php echo 'Aquí se mostrará la lista de usuarios'; ?>
+      <div class="col-lg-4">
+      <table class="table table-bordered">
+          <thead>
+              <th>Identificador</th>
+              <th>Usuario</th>
+              <th>Contraseña</th>
+          </thead>
+          <tbody>
+            <?php foreach ($params['usuarios'] as $usuario):?>
+                <tr>
+                    <td><?= $usuario['id']?></td>
+                    <td><?= $usuario['nombre_usuario']?></td>
+                    <td><?= $usuario['contrasena']?></td>
+                </tr>
+            <?php endforeach;?>
+          </tbody>
+      </table>
+      </div>
+      
   </div><!-- /.box-body -->
   <div class="box-footer">
     
