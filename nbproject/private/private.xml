@@ -8,13 +8,11 @@
             <file>file:/C:/wamp/www/phplv1/app/View/Pages/acerca.php</file>
             <file>file:/C:/wamp/www/phplv1/app/Controller/PagesController.php</file>
             <file>file:/C:/wamp/www/phplv1/app/Controller/AppController.php</file>
-            <file>file:/C:/wamp/www/phplv1/app/View/Usuarios/agregar.php</file>
             <file>file:/C:/wamp/www/phplv1/app/Model/AppModel.php</file>
             <file>file:/C:/wamp/www/phplv1/app/View/Usuarios/index.php</file>
+            <file>file:/C:/wamp/www/phplv1/app/lib/Validador.php</file>
             <file>file:/C:/wamp/www/phplv1/app/Controller/UsuariosController.php</file>
             <file>file:/C:/wamp/www/phplv1/app/Model/UsuariosModel.php</file>
-            <file>file:/C:/wamp/www/phplv1/app/Config/Config.php</file>
-            <file>file:/C:/wamp/www/phplv1/app/lib/FrontController.php</file>
         </group>
     </open-files>
 </project-private>

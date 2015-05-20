@@ -1,12 +1,10 @@
 <?php
 include 'AppModel.php';
+include '/../lib/Validador.php';
 class UsuariosModel extends AppModel{
     
      public function agregarUsuario($usuario, $contrasena)
      {
-         $usuario = htmlspecialchars($usuario);
-         $contrasena = htmlspecialchars($contrasena);
-         
          $sql = "INSERT INTO `phplv1`.`usuarios` (`id`, `nombre_usuario`, `contrasena`) VALUES (NULL, '".$usuario ."', '".$contrasena."');";
          //var_dump($sql);
          $result = mysqli_query($this->conexion, $sql );
@@ -14,7 +12,7 @@ class UsuariosModel extends AppModel{
      }
      
      public function buscarTodos(){
-         $sql = "SELECT * FROM `usuarios`";
+         $sql = "SELECT * FROM `usuarios`;";
 
          $result = mysqli_query($this->conexion, $sql);
 
@@ -29,11 +27,10 @@ class UsuariosModel extends AppModel{
 
      public function validarDatos($usuario, $contrasena)
      {
+         
          return (is_string($usuario) & is_string($contrasena) & !empty($usuario) & !empty($contrasena));
      }
      
-     public function campoVacio(){
-         
-     }
+     
      
 }
