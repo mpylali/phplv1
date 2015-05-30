@@ -1,6 +1,14 @@
-<?php ob_start(); 
-echo $params['mensaje'];?>
+<?php 
+require 'Ayudante/Vista.php';
+ob_start(); 
 
+?>
+<?php if (!empty($params['mensaje'])):?>
+<div class="callout callout-danger">
+    <h4>Advertencia!</h4>
+    <p><?=$params['mensaje'];?></p>
+</div>
+<?php endif;?>
 <!-- Default box -->
 <div class="box">
     <div class="box-header with-border">
@@ -13,13 +21,19 @@ echo $params['mensaje'];?>
     <!-- form start -->
     <form name="agregarUsuario" role="form" method="POST" action="agregar">
         <div class="box-body">
-            <div class="form-group">
-                <label for="usuario">Usuario</label>
-                <input name="usuario" type="text" class="form-control" id="usuario" placeholder="Ingresa usuario">
+            <div class="form-group <?php echo empty($params['msg']->mensaje['usuario'])?'':'has-error';?>">
+                <label class="control-label" for="usuario"> Usuario</label>
+                <input name="usuario" type="text" class="form-control" id="usuario" placeholder="Ingresa usuario" value="<?php echo empty($params['msg']->_atributos['usuario'])?'':$params['msg']->_atributos['usuario'];?>">
+                <?php if (!empty($params['msg']->mensaje['usuario'])){
+                    Vista::mensajesError($params['msg']->mensaje['usuario']);
+                }?>
             </div>
-            <div class="form-group">
+            <div class="form-group <?php echo empty($params['msg']->mensaje['contrasena'])?'':'has-error';?>">
                 <label for="contrasena">Contraseña</label>
-                <input name="contrasena" type="password" class="form-control" id="contrasena" placeholder="Contraseña">
+                <input name="contrasena" type="password" class="form-control" id="contrasena" placeholder="Contraseña" value="<?php echo empty($params['msg']->_atributos['contrasena'])?'':$params['msg']->_atributos['contrasena'];?>">
+                <?php if (!empty($params['msg']->mensaje['contrasena'])){
+                    Vista::mensajesError($params['msg']->mensaje['contrasena']);
+                }?>
             </div>
         </div><!-- /.box-body -->
 

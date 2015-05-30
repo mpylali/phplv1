@@ -1,7 +1,15 @@
 <?php
 include 'AppModel.php';
-include '/../lib/Validador.php';
+include '/../lib/Validacion.php';
 class UsuariosModel extends AppModel{
+    protected $reglas = array( 
+            array('name'=>'usuario','regla'=>'no-empty'),
+            array('name'=>'contrasena','regla'=>'no-empty,numeric'),
+            array('name'=>'activo','regla'=>'no-empty'),
+            );
+    
+    
+    
     
      public function agregarUsuario($usuario, $contrasena)
      {
@@ -25,10 +33,12 @@ class UsuariosModel extends AppModel{
          return $usuarios;
      }
 
-     public function validarDatos($usuario, $contrasena)
+     public function validarDatos($datos)
      {
+         $validacion =  new Validacion();
          
-         return (is_string($usuario) & is_string($contrasena) & !empty($usuario) & !empty($contrasena));
+         $validaciones = $validacion->rules($this->reglas,$datos);
+         return $validaciones;
      }
      
      
