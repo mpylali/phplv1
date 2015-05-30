@@ -1,12 +1,11 @@
 <?php
-include 'FrontControllerInterface.php';
 function __autoload($clase) {  
     $path = __DIR__ . '/../Controller/'.$clase . '.php';
     if(file_exists($path)){
         require_once $path;
     }
 }
-class FrontController implements FrontControllerInterface
+class FrontController
 {
     const DEFAULT_CONTROLLER = "PagesController";
     const DEFAULT_ACTION     = "index";
@@ -36,6 +35,7 @@ class FrontController implements FrontControllerInterface
     protected function parseUri() {
         $path = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), "/").'/';//Solo para el inicio
         $path = preg_replace('/[^a-zA-Z0-9]\//', "", $path);
+        
         if (strpos($path, $this->basePath) === 0) {
             $path = substr($path, strlen($this->basePath));
         }
