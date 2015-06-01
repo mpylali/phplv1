@@ -1,6 +1,4 @@
 <?php
-
-
 class Vista{
     public static function mensajesError($array){
         $string = "";

@@ -1,6 +1,6 @@
 <?php //define base URL
 date_default_timezone_set('America/Mexico_City');
-define('URL', 'http://localhost/phplv1/');
+define('URL', Config::getURL());
 ?>
 <!DOCTYPE html>
 <html>

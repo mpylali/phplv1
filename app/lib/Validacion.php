@@ -1,6 +1,4 @@
 <?php
-
-/**
 /**
 * Clase para realizar validaciones en el modelo
 * Es utilizada para realizar validaciones en el modelo de nuestras clases.
@@ -22,7 +20,7 @@ class Validacion
  }
 
  /**
- * Metodo para indicar la regla de validacion
+ * Método para indicar la regla de validacion
  * El método retorna un valor verdadero si la validación es correcta, de lo contrario retorna el objeto 
  * actual, permitiendo acceder al atributo Validacion::$mensaje ya que es publico
  */
@@ -41,7 +39,7 @@ class Validacion
       foreach($reglas as $clave => $valores){ 
        $validator = $this->_getInflectedName($valores);        
        if(!is_callable(array($this, $validator))){
-          throw new BadMethodCallException("No se encontro el metodo actual");
+          throw new BadMethodCallException("No se encontro el método actual");
        }
        $respuesta = $this->$validator($rules['name'], $valor);        
        $this->_resultado &= $respuesta;
@@ -63,8 +61,8 @@ class Validacion
  } 
  
  /**
- * Metodo inflector de la clase 
- * por medio de este metodo llamamos a las reglas de validacion que se generen
+ * Método inflector de la clase 
+ * por medio de este método llamamos a las reglas de validacion que se generen
  */
  private function _getInflectedName($text)
  {
@@ -88,8 +86,8 @@ class Validacion
  }
   
  /**
- * Metodo de verificacion de que el dato no este vacio o NULL
- * El metodo retorna un valor verdadero si la validacion es correcta de lo contrario retorna un valor falso
+ * Método de verificacion de que el dato no este vacio o NULL
+ * El método retorna un valor verdadero si la validacion es correcta de lo contrario retorna un valor falso
  * y llena el atributo validacion::$mensaje con un arreglo indicando el campo que mostrara el mensaje y el 
  * mensaje que visualizara el usuario
  */
@@ -104,8 +102,8 @@ class Validacion
   }
  }
  /**
- * Metodo de verificacion de tipo numerico
- * El metodo retorna un valor verdadero si la validacion es correcta de lo contrario retorna un valor falso
+ * Método de verificacion de tipo numerico
+ * El método retorna un valor verdadero si la validacion es correcta de lo contrario retorna un valor falso
  * y llena el atributo validacion::$mensaje con un arreglo indicando el campo que mostrara el mensaje y el 
  * mensaje que visualizara el usuario
  */
@@ -121,8 +119,8 @@ class Validacion
  }
  
  /**
- * Metodo de verificacion de tipo alfanumerico
- * El metodo retorna un valor verdadero si la validacion es correcta de lo contrario retorna un valor falso
+ * Método de verificacion de tipo alfanumerico
+ * El método retorna un valor verdadero si la validacion es correcta de lo contrario retorna un valor falso
  * y llena el atributo validacion::$mensaje con un arreglo indicando el campo que mostrara el mensaje y el 
  * mensaje que visualizara el usuario
  */
@@ -137,6 +135,12 @@ class Validacion
   }
  }
  
+ /**
+ * Método de verificacion de tipo archivo imagen
+ * El método retorna un valor verdadero si la validacion es correcta de lo contrario retorna un valor falso
+ * y llena el atributo validacion::$mensaje con un arreglo indicando el campo que mostrara el mensaje y el 
+ * mensaje que visualizara el usuario
+ */
  protected function _image($campo,$valor){
      
      if ((isset($valor['error']) && $valor['error'] == 0) || (!empty( $valor['tmp_name']) && $valor['tmp_name'] != 'none')) {
@@ -163,11 +167,18 @@ class Validacion
             }
 
         }else{
-            $this->mensaje[$campo][] = "No se eligio un archivo";
-            return false;
+//            $this->mensaje[$campo][] = "No se eligio un archivo";
+//            return false;
+            return true;
         }
  }
  
+ /**
+ * Método de verificacion de tipo archivo
+ * El método retorna un valor verdadero si la validacion es correcta de lo contrario retorna un valor falso
+ * y llena el atributo validacion::$mensaje con un arreglo indicando el campo que mostrara el mensaje y el 
+ * mensaje que visualizara el usuario
+ */
  protected function _file($campo,$valor){
      
      if ((isset($valor['error']) && $valor['error'] == 0) || (!empty( $valor['tmp_name']) && $valor['tmp_name'] != 'none')) {
@@ -193,9 +204,14 @@ class Validacion
         }
  }
  
+ /**
+ * Método de verificacion de tipo unico
+ * El método retorna un valor verdadero si la validacion es correcta de lo contrario retorna un valor falso
+ * y llena el atributo validacion::$mensaje con un arreglo indicando el campo que mostrara el mensaje y el 
+ * mensaje que visualizara el usuario
+ */
  protected function _unique($campo,$valor){
-     $m = new AppModel(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
-                     Config::$mvc_bd_password, Config::$mvc_bd_hostname);
+     $m = new AppModel(Config::getName(), Config::getUser(),Config::getPassword(), Config::getHost());
      
      $sql = "SELECT `id` FROM `usuarios` WHERE `nombre_usuario` = '$valor'";
      $result = mysqli_query($m->getConexion(), $sql );
@@ -211,8 +227,8 @@ class Validacion
  }
 
  /**
- * Metodo de verificacion de tipo email
- * El metodo retorna un valor verdadero si la validacion es correcta de lo contrario retorna un valor falso
+ * Método de verificacion de tipo email
+ * El método retorna un valor verdadero si la validacion es correcta de lo contrario retorna un valor falso
  * y llena el atributo validacion::$mensaje con un arreglo indicando el campo que mostrara el mensaje y el 
  * mensaje que visualizara el usuario
  */
@@ -222,7 +238,7 @@ class Validacion
    return true;
   } 
   else{
-   $this->mensaje[$campo][] = "el campo debe estar en el formato de email usuario@servidor.com";
+   $this->mensaje[$campo][] = "El campo debe estar en el formato de email usuario@servidor.com";
    return false;
   }
  }

@@ -10,24 +10,31 @@
     </div>
   </div>
   <div class="box-body">
-      <div class="col-lg-4">
       <table class="table table-bordered">
-          <thead>
-              <th>Identificador</th>
-              <th>Usuario</th>
-              <th>Contraseña</th>
-          </thead>
+         
+              
+          
           <tbody>
+              <td>Identificador</td>
+              <td>Usuario</td>
+              <td>Creado</td>
+              <td>Acciones</td>
             <?php foreach ($params['usuarios'] as $usuario):?>
                 <tr>
                     <td><?= $usuario['id']?></td>
                     <td><?= $usuario['nombre_usuario']?></td>
-                    <td><?= $usuario['contrasena']?></td>
+                    <td><?= $usuario['creado']?></td>
+                    <td>
+                        <div>
+                        <a href="<?= Config::getURL().'usuarios/view/'.$usuario['id'] ?>" class="btn btn-info"><i class='fa fa-search'></i>Ver</a>
+                        <a href="<?= Config::getURL().'usuarios/edit/'.$usuario['id'] ?>" class="btn btn-warning"><i class='fa fa-pencil'></i>Editar</a>
+                        <a href="<?= Config::getURL().'usuarios/delete/'.$usuario['id'] ?>" class="btn btn-danger"><i class='fa fa-times-circle'></i>Borrar</a>
+                        </div>
+                    </td>
                 </tr>
             <?php endforeach;?>
           </tbody>
       </table>
-      </div>
       
   </div><!-- /.box-body -->
   <div class="box-footer">

@@ -4,6 +4,8 @@ class AppController
  {
     public $layout = 'layout';
     
+
+
     public $Menu = array(
         array('icono'=>'fa fa-dashboard','tema'=>'Páginas',
             'contenido'=>array(
@@ -33,8 +35,11 @@ class AppController
         array('icono'=>'fa fa-file-excel-o','tema'=>'Manejo de Archivos','contenido'=>array()),
         );
     
-    
-    public function redirecionar($server,$controller,$action = ''){
+    /**
+    * Método que realiza una redirección a cada página 
+    * El método obtiene los parametros indicados para realizar la redirección de página
+    */
+    public function redirect($server,$controller,$action = ''){
         $host  = $server['HTTP_ORIGIN'];
         header("Location: $host/".Config::getBasePath()."$controller/$action");
         exit;
