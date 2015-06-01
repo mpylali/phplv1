@@ -1,20 +1,30 @@
 <?php
-include '/../Config/Config.php';
+require_once '/../Config/Config.php';
 class AppModel
  {
      protected $conexion;
 
      public function __construct($dbname,$dbuser,$dbpass,$dbhost)
      {
-       $mvc_bd_conexion = mysqli_connect($dbhost, $dbuser, $dbpass);
+         
+        @$mysqli = new mysqli($dbhost, $dbuser, $dbname, $dbname);
+        
+        if ($mysqli->connect_errno) {
+            die("Fallo al contenctar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
+        }
+        
+       mysqli_select_db($mysqli, $dbname);
 
-       if (!$mvc_bd_conexion) {
-           die('No ha sido posible realizar la conexión con la base de datos: ' . mysqli_error());
-       }
-       mysqli_select_db($mvc_bd_conexion, $dbname);
+       mysqli_set_charset($mysqli, 'utf8');
 
-       mysqli_set_charset($mvc_bd_conexion, 'utf8');
-
-       $this->conexion = $mvc_bd_conexion;
+       $this->conexion = $mysqli;
+     }
+     
+     public function getConexion(){
+         return $this->conexion;
+     }
+     
+     public function cerrarConexion(){
+         mysqli_close($this->conexion);
      }
  }

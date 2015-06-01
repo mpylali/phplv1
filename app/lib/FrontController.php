@@ -1,4 +1,5 @@
 <?php
+require_once '/../Config/Config.php';
 function __autoload($clase) {  
     $path = __DIR__ . '/../Controller/'.$clase . '.php';
     if(file_exists($path)){
@@ -13,9 +14,10 @@ class FrontController
     protected $controller    = self::DEFAULT_CONTROLLER;
     protected $action        = self::DEFAULT_ACTION;
     protected $params        = array();
-    protected $basePath      = "phplv1/";
+    protected $basePath;
      
     public function __construct(array $options = array()) {
+        $this->basePath = Config::getBasePath();
         if (empty($options)) {
            $this->parseUri();
         }
@@ -35,7 +37,7 @@ class FrontController
     protected function parseUri() {
         $path = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), "/").'/';//Solo para el inicio
         $path = preg_replace('/[^a-zA-Z0-9]\//', "", $path);
-        
+        //var_dump($path);
         if (strpos($path, $this->basePath) === 0) {
             $path = substr($path, strlen($this->basePath));
         }

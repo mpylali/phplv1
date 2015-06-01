@@ -1,4 +1,5 @@
 <?php
+require_once '/../Config/Config.php';
 class AppController
  {
     public $layout = 'layout';
@@ -33,6 +34,11 @@ class AppController
         );
     
     
+    public function redirecionar($server,$controller,$action = ''){
+        $host  = $server['HTTP_ORIGIN'];
+        header("Location: $host/".Config::getBasePath()."$controller/$action");
+        exit;
+    }
     
     
      

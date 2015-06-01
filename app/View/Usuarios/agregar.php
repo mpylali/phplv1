@@ -19,7 +19,7 @@ ob_start();
         </div>
     </div>
     <!-- form start -->
-    <form name="agregarUsuario" role="form" method="POST" action="agregar">
+    <form  name="agregarUsuario" role="form" method="POST" action="agregar" enctype="multipart/form-data">
         <div class="box-body">
             <div class="form-group <?php echo empty($params['msg']->mensaje['usuario'])?'':'has-error';?>">
                 <label class="control-label" for="usuario"> Usuario</label>
@@ -33,6 +33,13 @@ ob_start();
                 <input name="contrasena" type="password" class="form-control" id="contrasena" placeholder="Contraseña" value="<?php echo empty($params['msg']->_atributos['contrasena'])?'':$params['msg']->_atributos['contrasena'];?>">
                 <?php if (!empty($params['msg']->mensaje['contrasena'])){
                     Vista::mensajesError($params['msg']->mensaje['contrasena']);
+                }?>
+            </div>
+            <div class="form-group <?php echo empty($params['msg']->mensaje['img'])?'':'has-error';?>">
+                <label class="control-label" for="img"> Imagen de perfil</label>
+                <input type="file" name="img" id="img">
+                <?php if (!empty($params['msg']->mensaje['img'])){
+                    Vista::mensajesError($params['msg']->mensaje['img']);
                 }?>
             </div>
         </div><!-- /.box-body -->

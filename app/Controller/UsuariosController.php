@@ -9,7 +9,7 @@ class UsuariosController extends AppController{
          );
          
          $m = new UsuariosModel(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
-                     Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
+                     Config::$mvc_bd_password, Config::$mvc_bd_hostname);
 
          $params['usuarios'] = $m->buscarTodos();
          
@@ -18,21 +18,22 @@ class UsuariosController extends AppController{
     
     public function agregar()
      {
+        $datos = array();
         $params = array(
              'titulo' => 'Agregar Usuario',
              'mensaje' => '',
          );
          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-             $m = new UsuariosModel(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
+             $m = new UsuariosModel(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario, Config::$mvc_bd_password, Config::$mvc_bd_hostname);
              // comprobar campos formulario
+             $datos = $_POST;
+             @$datos['img'] = $_FILES['img'];
+             $msg = $m->validarDatos($datos);
              
-             $msg = $m->validarDatos($_POST);
              //var_dump($msg);
              if (is_bool($msg)) {
-                 echo 'puedo agragar';
-                 exit;
-                 if($m->agregarUsuario($_POST['usuario'], $_POST['contrasena'])){
-                     header('Location: index');
+                 if($m->agregarUsuario($datos)){
+                     $this->redirecionar($_SERVER,'usuarios','index');
                  }  else {
                      $params['mensaje'] = 'No se ha podido insertar el usuario. Revisa el formulario';
                  }
@@ -41,7 +42,7 @@ class UsuariosController extends AppController{
                  $params['mensaje'] = 'No se ha podido insertar el usuario. Revisa el formulario';
                  $params['msg'] = $msg;
              }
-
+             $m->cerrarConexion();
          }
         
         
